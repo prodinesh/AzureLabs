@@ -6,11 +6,19 @@ namespace AzureSQL_ServiceApp.DAL
 {
     public class BooksService : IBooksService
     {
+        
+        private readonly IConfiguration _configuration;
+        
+        public BooksService(IConfiguration configuration) 
+        { 
+            _configuration = configuration;
+        }
+
         public List<Books> GetBooks()
         {
             List<Books> listBooks = new List<Books>();
             string query = "select * from Books";
-            SqlConnection conn = new SqlConnection("Server=DINESH-O\\SQLEXPRESS;database=Experts;Trusted_Connection=True;TrustServerCertificate=True");
+            SqlConnection conn = new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             using (SqlDataReader reader = cmd.ExecuteReader())
