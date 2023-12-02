@@ -1,0 +1,59 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@* <div class="text-center">
+    <h1 class="display-4">This is List Of Courses</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Course ID</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course Fees</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var course in Model.Courses)
+            {
+                <tr>
+                    <th scope="row">@course.CourseId</th>
+                    <td scope="row">@course.CourseName</td>
+                    <td scope="row">@course.CourseFees</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> *@
+
+<div class="text-center">
+    <h1 class="display-4">This is List Of Books</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Book ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Genere</th>
+                <th scope="col">Is Fiction ?</th>
+                <th scope="col">Price</th>
+                <th scope="col">Published On</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var books in Model.Books)
+            {
+                <tr>
+                    <th scope="row">@books.BookId</th>
+                    <td scope="row">@books.Title</td>
+                    <td scope="row">@books.Author</td>
+                    <td scope="row">@books.Genere</td>
+                    <td scope="row">@books.IsFiction</td>
+                    <td scope="row">@books.Price</td>
+                    <td scope="row">@books.PublishedDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
