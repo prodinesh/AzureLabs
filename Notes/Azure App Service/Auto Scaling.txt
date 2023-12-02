@@ -31,11 +31,34 @@ Scaling Out/Horizontal scaling:
 Scaling In: 
 
 	Decrease the number of VM instances that run your app.
+	
+Cool-down period:
+
+	Cool down period is the amount of time to wait after a scale operation before scaling again.
+	It allows the metrics to stabilize and avoids scaling more than once for the same condition.
+	It applies to both scale-in and scale-out events.
 
 Q: What is the difference between Vertical Scaling and Horizontal Scaling?
 
 	Scaling up is adding further resources, like hard drives and memory to increase the computing capacity of physical servers where as 
 	scaling out is adding more servers to spread the workload across more machines.
+	
+LAB:
+====
+
+Step-1:	Create a App service with Basic app service plan.
+Step-2:	Deploy web application on to the app service.
+Step-3:	Go to scale out and observe the configuration.
+Step-4:	Go to app service plan and observe the metrics and graphs.
+Step-5:	Go back to app service, select 'Scale up (App Service Plan)' and select 'Production' S1 app service plan.
+		This step upgrades the app service plan which enables automatic scaling.
+		Observe the 'Included features'.
+Step-6:	Go to 'Scale out (App Service Plan)' and select 'Custom autoscale'.
+Step-7:	Add a 'Scale rule' to scale out and another rule to scale in based on metric.
+Step-8:	Set the instance limits and instance count. Click Save.
+Step-9:	Play with deployed web application in the browser.
+Step-10: Verify app service plan instances on the overview page.
+Step-11: Observe the scale out 'Run history' for changes.
 
 
 
