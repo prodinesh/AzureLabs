@@ -1,0 +1,40 @@
+Azure App Service:
+
+Custom Domain & SSL:
+
+As a prerequisite, you should be having a domain name registerd with Domain registrar/web hosting sites/3rd party or external domain provider.
+
+1Go to app service overview page >> Settings >> Custom domains
+2Click on 'Add custom domain' button.
+3'Add custom domain' section open's.
+4Select 'All other domain services' in the Domain provider.
+5Leave default settings for other fields.
+6Add your domain in the 'Domain' field.
+7Domain validation tables with values will be display.
+8Copy Type value 'A', Host value as '@', Value as '<ip address of app service>'.
+9Go to DNS Management of your domain registrar site and add these values as record.
+10Come back to app service and copy values for 'TXT' type and repeat step 9.
+Click on 'Validate' button.
+Once validated successfully, you have proved to app service that you own this custom domain. 
+click on 'Add' button to add your custom domain.
+It will take around 10 minutes of time. Check notifications for adding custom domain
+and SSL binding.
+Once custom domain is added, you can access the custom domain with http protocol.
+
+Providing SSL Binding to custom domain:
+
+Click on 'Certificates' for 'Add App Service Managed Certificate' UI
+Select your Custom domain.
+Enter certificate friendly name.
+Click on validate and then add.
+
+  
+
+
+ 
+
+
+
+
+
+
