@@ -1,10 +1,10 @@
 {
   "ConnectionStrings": {
-    "SQLConnection": "Server=tcp:appserver6000.database.windows.net,1433;
-	Initial Catalog=appdb;
+    "SQLConnection": "Server=tcp:<<Server Name>>,1433;
+	Initial Catalog=<<Database Name>>;
 	Persist Security Info=False;
-	User ID=sqlusr;
-	Password=Azure@123;
+	User ID=<<User Id>>;
+	Password=<<Password>>;
 	MultipleActiveResultSets=False;
 	Encrypt=True;
 	TrustServerCertificate=False;
