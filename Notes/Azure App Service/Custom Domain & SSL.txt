@@ -2,31 +2,27 @@ Azure App Service:
 
 Custom Domain & SSL:
 
-As a prerequisite, you should be having a domain name registerd with Domain registrar/web hosting sites/3rd party or external domain provider.
+As a prerequisite, you should be having a domain name registerd with 
+Domain registrar/web hosting sites/3rd party or external domain provider Ex: Godaddy.com
 
-1Go to app service overview page >> Settings >> Custom domains
-2Click on 'Add custom domain' button.
-3'Add custom domain' section open's.
-4Select 'All other domain services' in the Domain provider.
-5Leave default settings for other fields.
-6Add your domain in the 'Domain' field.
-7Domain validation tables with values will be display.
-8Copy Type value 'A', Host value as '@', Value as '<ip address of app service>'.
-9Go to DNS Management of your domain registrar site and add these values as record.
-10Come back to app service and copy values for 'TXT' type and repeat step 9.
-Click on 'Validate' button.
-Once validated successfully, you have proved to app service that you own this custom domain. 
-click on 'Add' button to add your custom domain.
-It will take around 10 minutes of time. Check notifications for adding custom domain
-and SSL binding.
-Once custom domain is added, you can access the custom domain with http protocol.
+Step 1:		Go to your App Service menu >> Settings >> Custom domains
+Step 2:		Click on 'Add custom domain' button.
+Step 3:		'Add custom domain' UI will be displayed.
+Step 4:		Select 'All other domain services' in the Domain provider.
+Step 5:		Leave default settings for other fields as is.
+Step 6:		Add your domain in the 'Domain' field to view domain validation details.
+Step 7:		Copy Type value 'A', Host value as '@', Value as '<ip address of app service>' 
+			to the DNS management records on the domain registrar site.
+Step 8:		Copy values for 'TXT' type from app service to DNS managment records on the domain registar site.
+Step 9:		Click on 'Validate' button on the app service to validate custom domain.
+Step 10:	Once validation passed, click on 'Add' button to add your custom domain.
+			It will take around 10 minutes of time. 
+			Check notifications for successfully adding of custom domain and SSL binding.
+Step 11:	Once custom domain is added, you can start accessing your web application with the custom domain.
 
-Providing SSL Binding to custom domain:
+App service will add managed SSL certificate by default.
+You can view the certificate by navigating to 'Managed certificates' tab in Settings >> Certificates.
 
-Click on 'Certificates' for 'Add App Service Managed Certificate' UI
-Select your Custom domain.
-Enter certificate friendly name.
-Click on validate and then add.
 
   
 
