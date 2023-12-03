@@ -5,8 +5,8 @@ name: Build and deploy ASP.Net Core app to Azure Web App - dinelabs
 
 on:
   push:
-    branches:
-      - master
+    # branches:
+      # - master
   workflow_dispatch:
 
 jobs:
