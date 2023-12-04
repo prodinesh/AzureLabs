@@ -1,0 +1,46 @@
+Azure App Service:
+
+Feature Management:
+
+	Feature management povide UI for creating and managing the feature flags that you use in your applications.
+	Feature flags are like switches in the app configuration to turn ON & OFF a feature.
+	You can implement flag feature using 'FeatureGate' at Controller level or Action level.
+
+Lab:
+
+	Objective: Display a message on your application page based on Feature flag
+
+	Navigate to Azure app configuration >> Operation >> Feature manager
+	Click on 'Create' button, to add 'Feature flag name' and 'Apply'.
+
+	Install 'Micorosft.FeatureManagement.AspNetCore' Nuget package to your application.
+	In Program.cs file,
+
+		builder.Host.ConfigureAppConfiguration(
+			{
+				builder.AddAzureAppConfiguration(options => options.Connect(connectionString).UseFeatureFlags());
+			}
+		);
+		builder.Services.AddFeatureManagement();
+
+	In service class file,
+		Access the feature flag enable/disable property by
+		injecting IFeatureManager object through service class constructor.
+		Add new async method to return bool based on enable/disable property of the your feature flag.
+
+		public async Task<bool> IsBeta()
+		{
+			if(await _featureManager.IsEnabledAsync("beta"))
+				return true;
+			else
+				return false;
+		}
+
+	In the Interface file, add the function.
+
+	In the UI class file, access your bool function in the OnGet() method.
+	In the UI file, display a message based on the Model property.
+
+Reference:
+
+	https://learn.microsoft.com/en-us/azure/azure-app-configuration/use-feature-flags-dotnet-core?tabs=core6x
