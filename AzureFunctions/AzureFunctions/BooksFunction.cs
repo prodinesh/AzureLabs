@@ -9,13 +9,14 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 namespace AzureFunctions
 {
     public static class BooksFunction
     {
-        [FunctionName("GetBooks")]
-        public static async Task<IActionResult> RunGetBooks(
+        [FunctionName("ReadBooks")]
+        public static async Task<IActionResult> RunReadBooks(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -44,8 +45,8 @@ namespace AzureFunctions
             return new OkObjectResult(books);
         }
 
-        [FunctionName("GetBook")]
-        public static async Task<IActionResult> RunGetBook(
+        [FunctionName("ReadBook")]
+        public static async Task<IActionResult> RunReadBook(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -71,6 +72,35 @@ namespace AzureFunctions
                 }
             conn.Close();
             return new OkObjectResult(book);
+        }
+
+        [FunctionName("CreateBook")]
+        public static async Task<IActionResult> RunCreateBook(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            Book _book = JsonConvert.DeserializeObject<Book>(requestBody);
+            SqlConnection _connection = GetConnection();
+            string _statement = "INSERT INTO BOOKS VALUES (@parameter1, @parameter2, @parameter3," +
+                " @parameter4, @parameter5, @parameter6, @parameter7, @parameter8)";
+            _connection.Open();
+            using(SqlCommand _cmd = new SqlCommand(_statement, _connection))
+            {
+                _cmd.Parameters.Add("@parameter1", System.Data.SqlDbType.Int).Value = _book.BookId;
+                _cmd.Parameters.Add("@parameter2", System.Data.SqlDbType.UniqueIdentifier).Value = _book.BookIdGuid;
+                _cmd.Parameters.Add("@parameter3", System.Data.SqlDbType.VarChar).Value = _book.BookTitle;
+                _cmd.Parameters.Add("@parameter4", System.Data.SqlDbType.VarChar).Value = _book.Author;
+                _cmd.Parameters.Add("@parameter5", System.Data.SqlDbType.VarChar).Value = _book.Genere;
+                _cmd.Parameters.Add("@parameter6", System.Data.SqlDbType.Bit).Value = _book.IsFiction;
+                _cmd.Parameters.Add("@parameter7", System.Data.SqlDbType.Decimal).Value = _book.Cost;
+                _cmd.Parameters.Add("@parameter8", System.Data.SqlDbType.DateTime).Value = _book.PublishedOn;
+                _cmd.CommandType = CommandType.Text;
+                _cmd.ExecuteNonQuery();
+            }
+            _connection.Close();
+            return new OkObjectResult("Book record created");
+
         }
 
         private static SqlConnection GetConnection()
