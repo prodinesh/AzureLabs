@@ -4,8 +4,19 @@
     ViewData["Title"] = "Home page";
 }
 
+
 <div class="text-center">
     <h3 class="display-4">This is List Of Books from Production</h3>
+    <br/>
+@*     @if(Model.IsBeta)
+    {
+        <h2 class="display-4">Feature flag is 'ON'</h2>
+    }
+    else
+    {
+        <h2 class="display-4">Feature flag is 'OFF''</h2>
+    } *@
+
     <br/>
     <table class="table table-bordered">
         <thead>
@@ -17,6 +28,7 @@
                 <th scope="col">Is Fiction ?</th>
                 <th scope="col">Price</th>
                 <th scope="col">Published On</th>
+                <th scope="col">Book Cover</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +42,7 @@
                     <td scope="row">@books.IsFiction</td>
                     <td scope="row">@books.Price</td>
                     <td scope="row">@books.PublishedDate</td>
+                    <td scope="row"><img src=@books.ImgUrl alt=""/></td>
                 </tr>
             }
         </tbody>

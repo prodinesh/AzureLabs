@@ -3,14 +3,15 @@ using AzureSQL_ServiceApp.Interface;
 using AzureSQL_ServiceApp.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.FeatureManagement;
 
 namespace AzureSQL_ServiceApp.Pages
 {
     public class IndexModel : PageModel
     {
-        //public List<Courses> Courses;
         private readonly IBooksService _IBooksService;
         public List<Books> Books;
+        public bool IsBeta;
 
         public IndexModel(IBooksService IBooksService) 
         {
@@ -19,9 +20,8 @@ namespace AzureSQL_ServiceApp.Pages
 
         public void OnGet()
         {
-            //SQLConnectionClass DBService = new SQLConnectionClass();
-            //Courses = DBService.GetCourses();
             Books = _IBooksService.GetBooks();
+            IsBeta = _IBooksService.IsBeta().Result;
         }
     }
 }

@@ -10,5 +10,7 @@
         public bool IsFiction { get; set; }
         public decimal Price { get; set; }
         public DateTime PublishedDate { get; set; }
+        public byte[] Cover { get; set; }
+        public string ImgUrl { get; set; }
     }
 }
