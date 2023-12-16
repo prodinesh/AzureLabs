@@ -1,1 +1,20 @@
 Azure App Service:
+
+Your app service should be Standard or higher for deployment slot feature.
+While adding connection string to the deployment slot ensure to check the 'Deployment Slot Setting'
+checkbox.
+This is an important setting if your application has a DB and it ensures your connection string
+sticks to the deployment slot during swapping.
+
+
+What are the 
+
+Lab - Deployment slot for simple web application:
+
+Create your app service.
+Publish your web application to the app service.
+Access the web application with app service url.
+
+Lab - Deployment slots with Databases
+
+https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal
