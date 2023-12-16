@@ -11,12 +11,20 @@ Azure App Configuration:
 
 		In Program.cs file, 
 			create connection string variable and assign value copied from the azure app configuration service primary or secondary key value. 
+			
+			In .NET 6.0
+			
 			Host the App configuration with below code
 			builder.Host.ConfigureAppConfiguration(
 				builder => {
 					builder.AddAzureAppConfiguration(connectionstring_variable);
 				}
-			)	
+			
+			)
+			
+			In .NET 8.0
+
+			builder.Configuration.AddAzureAppConfiguration(connectionstring_variable);			
 
 		In Service class file,
 			access the connection string simply by adding connection string key from the app confirguartion service
