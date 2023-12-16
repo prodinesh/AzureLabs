@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "appConfig1": {
-      "ignored": "true",
-      "type": "appConfig.azure"
-    }
-  }
-}
