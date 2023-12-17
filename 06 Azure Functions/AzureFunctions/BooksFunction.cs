@@ -32,20 +32,20 @@ namespace AzureFunctions
                     Book book = new Book();
                     book.BookId = reader.GetInt32(0);
                     book.BookIdGuid = reader.GetGuid(1);
-                    book.BookTitle = reader.GetString(2);
+                    book.Title = reader.GetString(2);
                     book.Author = reader.GetString(3);
                     book.Genere = reader.GetString(4);
                     book.IsFiction = reader.GetBoolean(5);
                     book.Cost = reader.GetDecimal(6);
-                    book.PublishedOn = reader.GetDateTime(7);
+                    book.PublishedDate = reader.GetDateTime(7);
                     book.Cover = (byte[])reader[8];
                     string encodedCoverImage = Convert.ToBase64String((byte[])reader[8]);
-                    book.ImageUrl = string.Concat("data:image/jpg;base64", encodedCoverImage);
+                    book.ImageUrl = string.Concat("data:image/jpg;base64,", encodedCoverImage);
                     books.Add(book);
                 }
             }
             conn.Close();
-            return new OkObjectResult(books);
+            return new OkObjectResult(JsonConvert.SerializeObject(books));
         }
 
         [FunctionName("ReadBook")]
@@ -65,12 +65,12 @@ namespace AzureFunctions
                     {
                         book.BookId = reader.GetInt32(0);
                         book.BookIdGuid = reader.GetGuid(1);
-                        book.BookTitle = reader.GetString(2);
+                        book.Title = reader.GetString(2);
                         book.Author = reader.GetString(3);
                         book.Genere = reader.GetString(4);
                         book.IsFiction = reader.GetBoolean(5);
                         book.Cost = reader.GetDecimal(6);
-                        book.PublishedOn = reader.GetDateTime(7);
+                        book.PublishedDate = reader.GetDateTime(7);
                         book.Cover = (byte[])reader[8];
                         string encodedCoverImage = Convert.ToBase64String((byte[])reader[8]);
                         book.ImageUrl = string.Concat("data:image/jpg;base64", encodedCoverImage);
@@ -96,12 +96,12 @@ namespace AzureFunctions
             {
                 _cmd.Parameters.Add("@paraBookId", System.Data.SqlDbType.Int).Value = _book.BookId;
                 _cmd.Parameters.Add("@paraBookIdGuid", System.Data.SqlDbType.UniqueIdentifier).Value = _book.BookIdGuid;
-                _cmd.Parameters.Add("@paraTitle", System.Data.SqlDbType.VarChar).Value = _book.BookTitle;
+                _cmd.Parameters.Add("@paraTitle", System.Data.SqlDbType.VarChar).Value = _book.Title;
                 _cmd.Parameters.Add("@paraAuthor", System.Data.SqlDbType.VarChar).Value = _book.Author;
                 _cmd.Parameters.Add("@paraGenre", System.Data.SqlDbType.VarChar).Value = _book.Genere;
                 _cmd.Parameters.Add("@paraIsFiction", System.Data.SqlDbType.Bit).Value = _book.IsFiction;
                 _cmd.Parameters.Add("@paraCost", System.Data.SqlDbType.Decimal).Value = _book.Cost;
-                _cmd.Parameters.Add("@paraPublishedOn", System.Data.SqlDbType.DateTime).Value = _book.PublishedOn;
+                _cmd.Parameters.Add("@paraPublishedOn", System.Data.SqlDbType.DateTime).Value = _book.PublishedDate;
                 _cmd.Parameters.Add("@paraCover", System.Data.SqlDbType.VarBinary).Value = _book.Cover;
                 _cmd.CommandType = CommandType.Text;
                 _cmd.ExecuteNonQuery();
