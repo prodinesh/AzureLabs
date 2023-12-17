@@ -3,6 +3,8 @@ using AzureSQL_ServiceApp.Model;
 using Microsoft.Data.SqlClient;
 using Microsoft.FeatureManagement;
 using System.Diagnostics.Eventing.Reader;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AzureSQL_ServiceApp.DAL
@@ -12,6 +14,7 @@ namespace AzureSQL_ServiceApp.DAL
         
         private readonly IConfiguration _configuration;
         private readonly IFeatureManager _featureManager;
+        private readonly string azureFunctionUrl = "http://localhost:7192/api/ReadBooks";
 
         private SqlConnection GetSQLDBConnection()
         {
@@ -43,15 +46,15 @@ namespace AzureSQL_ServiceApp.DAL
                 {
                     Books book = new Books();
                     book.BookId = reader.GetInt32(0);
-                    book.GuidId = reader.GetGuid(1);
+                    book.BookIdGuid = reader.GetGuid(1);
                     book.Title = reader.GetString(2);
                     book.Author = reader.GetString(3);
                     book.Genere = reader.GetString(4);
                     book.IsFiction = reader.GetBoolean(5);
-                    book.Price = reader.GetDecimal(6);
+                    book.Cost = reader.GetDecimal(6);
                     book.PublishedDate = reader.GetDateTime(7);
                     string encodedCoverBytes = Convert.ToBase64String((byte[])reader[8]);
-                    book.ImgUrl = string.Concat("data:image/jpg;base64,", encodedCoverBytes);
+                    book.ImageUrl = string.Concat("data:image/jpg;base64,", encodedCoverBytes);
                     listBooks.Add(book);
                 }
             }
@@ -65,6 +68,20 @@ namespace AzureSQL_ServiceApp.DAL
                 return true;
             else
                 return false;
+        }
+
+        /// <summary>
+        /// This function will be invoked by Azure Function Apps
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Books>> GetBooksByAzureFunction()
+        {
+            using(HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(azureFunctionUrl);
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<List<Books>>(content);
+            }
         }
     }
 }

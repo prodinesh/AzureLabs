@@ -6,5 +6,6 @@ namespace AzureSQL_ServiceApp.Interface
     {
         List<Books> GetBooks();
         Task<bool> IsBeta();
+        Task<List<Books>> GetBooksByAzureFunction();
     }
 }
