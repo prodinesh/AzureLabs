@@ -1,0 +1,110 @@
+Deploying Container based solutions:
+
+	- Basics of containers
+	- Deploying simple docker container on Linux VM
+	- Containerize .NET application
+	- Publish Image to Azure Container Registry
+	- Run as part of Azure Conatiner Instance
+	- Run web based container and DB based container
+	- Host solution using the Azure Container Instance Service
+	- Working with Azure Kubernetes
+	
+Containers:
+
+Isolation:
+
+Without containers, it is difficult to isolate application running on the same VM.
+Updates to one application may impact other applications running on the same machine.
+  
+Using conatiners we can package an application along with libraries,
+frameworks and depedencies in a self contained unit and make it run.
+It wont impact other applications running in the other contained  unit.
+
+Portability:
+
+Contained unit of application can be easily run on another virtual machine 
+as long as the conatiner is running the runtime for the container based application.
+
+/************* Docker Labs *************/
+
+
+Create VM on Azure.
+Install docker runtime on the linux machine for Ubuntu using Docker documentation.
+
+Install Docker Engin/runtime on the Ubuntu Linux VM:
+====================================================
+
+Ref : https://docs.docker.com/engine/install/ubuntu/
+
+# Add Docker's official GPG key:
+
+	sudo apt-get update
+
+	sudo apt-get install ca-certificates curl gnupg
+
+	sudo install -m 0755 -d /etc/apt/keyrings
+
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+	sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+
+	echo \
+	  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+	  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+	  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+	sudo apt-get update
+	
+# Install docker packages
+
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	
+After installation verify with below commands:
+
+	$ sudo docker ps --> List out conatiners on the VM
+	$ sudo docker images --> List out images on the VM
+	
+These will be displayed as empty tables as we dont have any containers and images on the VM.
+ 
+Donwload NGINX container from the docker hub:
+=============================================
+	
+	$ sudo docker run --name appnginx -p 80:80 -d nginx
+
+Once nginx image is downloaded you can see it in the containers and images list.
+
+Create Image, conatinerize simple web app :
+===========================================
+
+Publish the web app locally and copy the binaries on to Linux VM with WinSCP tool.
+Create docker file locally and copy it to the publish folder in the VM.
+
+Ref - https://learn.microsoft.com/en-us/dotnet/core/docker/build-container?tabs=windows&pivots=dotnet-8-0
+
+Navigate to the publish folder.
+
+Build the docker file by executing the following commands 
+	$ sudo docker build -t <<Image title>> .
+	
+Stop the container running on the port 80
+	$ sudo docker stop <<first 3 chars of conatiner id>>
+	
+Remove the container
+
+	$ sudo docker rm <<first 3 chars of conatiner id>>
+	
+Remove the image
+
+	$ sudo docker image rm <<Image name>> 
+
+Create container for our .NET app
+	$ sudo docker run --name simpleapp-1 -p 80:80 -d simpleapp
+	
+If you make any changes in the application for re-deployment,
+
+	Re-pulish the changes and move the binaries to the VM machine publish folder.
+	Stop the container.
+	build the changes and create new image.
+	run the conatiner with the new image file.
