@@ -8,4 +8,6 @@ Tech stack needed to work with these labs:
   <li>Postman</li>
   <li>PuTTY</li>
   <li>WinSCP</li>
+  <li>VS Code</li>
+  <li>draw.io</li>
 </ol>
