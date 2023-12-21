@@ -6,4 +6,8 @@ Tech stack needed to work with these labs:
   <li>Visual Studio 2022 - Community Edition </br></li>
   <li>Microsoft SQL Server 2022 - Community Edition </br></li>
   <li>Postman</li>
+  <li>PuTTY</li>
+  <li>WinSCP</li>
+  <li>VS Code</li>
+  <li>draw.io</li>
 </ol>
