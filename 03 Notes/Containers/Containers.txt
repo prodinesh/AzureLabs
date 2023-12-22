@@ -25,8 +25,9 @@ Portability:
 Contained unit of application can be easily run on another virtual machine 
 as long as the conatiner is running the runtime for the container based application.
 
-/************* Docker Labs *************/
+Docker file --> Build --> Docker Image  --> Run --> Docker container
 
+/************* Docker Labs *************/
 
 Create VM on Azure.
 Install docker runtime on the linux machine for Ubuntu using Docker documentation.
