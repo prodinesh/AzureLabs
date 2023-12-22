@@ -1,0 +1,30 @@
+Azure Container Instances:
+
+Deployment: 
+
+Fast and easy way to deploy container on to Azure platform.
+
+	Container will be deployed to Azure Container Registry (ACR)
+	and Azure Container Instance (ACI) will pull out the image from ACR and deploy
+	a container.
+
+Infrastructure:
+
+	No need to manage the underlying infrastructure.
+
+Public Access:
+
+	ACI can get their own Public IP and DNS name.
+	
+File shares:
+
+	Persist data via the use of Azure File shares.
+
+Lab:
+
+	1.	Create Container Instances resource.
+		Pick up image from ACR.
+	2.	Network tab --> Add public IP address and 80 port.
+	3.	Go to resources and use ip address for access your application.
+	4.	Go to containers to verify the status of images.
+
