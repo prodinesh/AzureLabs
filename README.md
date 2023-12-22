@@ -9,5 +9,15 @@ Tech stack needed to work with these labs:
   <li>PuTTY</li>
   <li>WinSCP</li>
   <li>VS Code</li>
-  <li>draw.io</li>
+</ol>
+
+Study area's:
+
+<ol>
+  <li>Azure CLI commands</li>
+  <li>Linux commands</li>
+  <li>Web API's</li>
+  <li>Async methods</li>
+  <li>JSON Objects</li>
+  <li>API testing with postman</li>
 </ol>
