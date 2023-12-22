@@ -1,0 +1,56 @@
+Creating Azure Container Registry:
+
+	1.	Go to Azure Portal.
+	2.	Create Container Registry in azure portal.
+	3.	Once resource is created, go to Access Keys and enable 'Admin user'.
+
+Pushing an image to the Azure Container Registry (ACR):
+
+Per requisite - Azure Command Line interface.
+
+Step 1:	Install AZ command line interface on the linux machine
+
+	Ref: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
+
+		Ubuntu 20.04 (Focal Fossa) and 20.10 (Groovy Gorilla) include an azure-cli package with version 2.0.81 provided by the universe repository. 
+		This package is outdated and not recommended. 
+		If this package is installed, remove the package before continuing by running the command 
+			sudo apt remove azure-cli -y && sudo apt autoremove -y
+
+	1.	Get packages needed for the installation process:
+
+		sudo apt-get update
+		sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+
+	2.	Download and install the microsoft signing key:
+
+		sudo mkdir -p /etc/apt/keyrings
+		curl -sLS https://packages.microsoft.com/keys/microsoft.asc |
+			gpg --dearmor |
+			sudo tee /etc/apt/keyrings/microsoft.gpg > /dev/null
+		sudo chmod go+r /etc/apt/keyrings/microsoft.gpg
+		
+	3.	Add Azure CLI software repository:
+
+		AZ_DIST=$(lsb_release -cs)
+		echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_DIST main" |
+		sudo tee /etc/apt/sources.list.d/azure-cli.list
+		
+	4.	Update repository information and install the azure-cli package:
+
+		sudo apt-get update
+		sudo apt-get install azure-cli
+
+Step 2: Log in to ACR
+
+	sudo az acr login --name <<ACR name>> --username <<ACR username>> --password <<ACR password>>
+
+Step 3:	Tag image to the ACR
+
+	sudo docker tag <<tag name>> <<login server name of ACR>>/<<image name>>
+	
+Step 4: Push the image onto ACR.
+	
+	sudo docker push <<login server name of ACR>>/<<image name>>
+	
+Go to ACR --> Repositories, to see the image taged to ACR. 
