@@ -87,25 +87,45 @@ Ref - https://learn.microsoft.com/en-us/dotnet/core/docker/build-container?tabs=
 Navigate to the publish folder.
 
 Build the docker file by executing the following commands 
-	$ sudo docker build -t <<Image title>> .
+	
+	sudo docker build -t <<Image title>> .
 	
 Stop the container running on the port 80
-	$ sudo docker stop <<first 3 chars of conatiner id>>
+	
+	sudo docker stop <<first 3 chars of conatiner id>>
 	
 Remove the container
 
-	$ sudo docker rm <<first 3 chars of conatiner id>>
+	sudo docker rm <<first 3 chars of conatiner id>>
 	
 Remove the image
 
-	$ sudo docker image rm <<Image name>> 
+	sudo docker image rm <<Image name>> 
 
 Create container for our .NET app
-	$ sudo docker run --name simpleapp-1 -p 80:80 -d simpleapp
 	
+	sudo docker run --name simpleapp-1 -p 80:80 -d simpleapp
+	sudo docker run --name <<conatiner name>> -p <<Host port number>>:80 -d <<image name>>
+		
+To view the files copied to the container
+	
+	sudo docker exec -it <<container id>> /bin/bash
+	
+Command to get the present working directory
+	
+	pwd
+	
+Command to get hostname of the present working directory
+
+	hostname
+	
+Command to come out of the container and get back to root directory
+
+	exit
+		
 If you make any changes in the application for re-deployment,
 
-	Re-pulish the changes and move the binaries to the VM machine publish folder.
+	Re-publish the changes and move the binaries to the VM machine publish folder.
 	Stop the container.
 	build the changes and create new image.
 	run the conatiner with the new image file.
