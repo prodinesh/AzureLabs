@@ -89,6 +89,7 @@ Navigate to the publish folder.
 Build the docker file by executing the following commands 
 	
 	sudo docker build -t <<Image title>> .
+	sudo docker build -t <<Image title>>:<<version ex: v1>> .
 	
 Stop the container running on the port 80
 	
@@ -105,7 +106,9 @@ Remove the image
 Create container for our .NET app
 	
 	sudo docker run --name simpleapp-1 -p 80:80 -d simpleapp
-	sudo docker run --name <<conatiner name>> -p <<Host port number>>:80 -d <<image name>>
+	sudo docker run --name <<conatiner name>> -p <<Host port number>>:80 -d <<image name>>:<<version ex: v1>>
+	
+	If version not available to image, default value of 'latest' will be assigned.
 		
 To view the files copied to the container
 	
