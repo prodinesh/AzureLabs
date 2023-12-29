@@ -64,8 +64,17 @@ Ref : https://docs.docker.com/engine/install/ubuntu/
 	
 After installation verify with below commands:
 
-	$ sudo docker ps --> List out conatiners on the VM
-	$ sudo docker images --> List out images on the VM
+Command to display containers:
+
+	sudo docker ps
+	
+Command to display all containers: 
+	
+	sudo docker ps -a
+	
+Command to list images
+
+	sudo docker images
 	
 These will be displayed as empty tables as we dont have any containers and images on the VM.
  
@@ -125,6 +134,16 @@ Command to get hostname of the present working directory
 Command to come out of the container and get back to root directory
 
 	exit
+	
+Command to get to the root of the linux vm
+
+	sudo -i
+	
+command to get to home directory and present user
+
+	cd /home/linuxusr
+	
+
 		
 If you make any changes in the application for re-deployment,
 
