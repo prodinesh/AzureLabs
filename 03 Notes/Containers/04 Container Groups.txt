@@ -34,6 +34,169 @@ Examples/usecases:
 /**************************************/
 
 
+1 - Azure MYSQL connected to local app.
+2 - MySQL containerization(existing) in Azure and accessing through Workbench on your local machine.
+3 - MySQL custom containerization and verify data, run queries etc.,
+4 - Access it through local application
+5 - Register in ACR and access through ACI from your local machine.
+6 - Local application image accessing MySQL image.
+
+LAB 01: Connect your web application locally to the MySQL DB on Azure Cloud.
+
+	1.Create web app in your local machine.
+	2.Install MySQL.Data NuGet package.
+	3.Implement ado.net changes for MySQL in the application.
+	4.Create Azure database for MySQL in the Azure portal.
+	6.Once successfully created connection security --> add client IP address to the firewall rules.
+	7.ConnectionStrings --> Copy and update the string to the application.
+
+	8.Go to MySQL workbench --> add server name, user and pwd. 
+	9.Run the script to create DB, table and insert data.
+	10. Run the application locally to verify data displaying from MySQL DB
+	
+LAB 02: Create MySQL DB conatiner and connect through MySQL Workbench
+
+	Create Linux VM.
+	
+	Install docker image on the VM.
+	Ref: https://docs.docker.com/engine/install/ubuntu/
+
+	Download MySQL image and run as container from dockerhub using command
+	sudo docker run --name=mysql-instance -p 3306:3306 --restart on-failure -d -e MYSQL_ROOT_
+	PASSWORD=<<mysql password>> mysql
+
+	/*** For learning command - nonsecure ***/ 
+	> sudo docker exec -it mysql-instance /bin/bash
+	> -u root -p	
+		(or)
+	/*** Real time command ***/	
+	> sudo docker exec -it <<container name>> mysql -u root -p
+	
+	> Enter password:
+
+	mysql> show database;
+
+	Open MySQL Workbench and connect to MySQL DB engine in the container.
+
+LAB 03:
+
+	Create Newfolder and place the script for create table and insert values.
+	Create docker file.
+
+		FROM mysql as base
+		ENV MYSQL_ROOT_PASSWORD=Azure123
+		ENV MYSQL_DATABASE=appdb
+
+		COPY <<script file name>>.sql /docker-entrypoint-initdb.d/
+
+	Copy scirpt and docker file to server.
+
+	Ruild the docker file and create image
+	Run the custom docker image to containerize.
+
+	open an interactive shell on the new sql container
+	sudo docker exec -it <<conatiner name>> mysql -u root -p
+	Enter password:
+
+	mysql> show databses;
+	mysql> use <<db name>>;
+	mysql> show tables;
+	mysql> select * from <<table name>>;
+
+LAB 04:
+
+	Go to the application on your local machine and modify connection string to 
+	connect with MySQL Container DB
+
+	Server=<<Public IP address of VM>>
+	Uid = <<root>>
+	Pwd = <<MySQL password on the container>>
+	Database = <<Database Name>>
+
+	Enable 3306 port on the VM machine.
+	Run the application locally.
+
+LAB 05: Deploy conatiner to ACR
+
+	Log-in to Azure Container Registry (ACR)
+	> sudo docker login <<ACR login server>> 
+	Tag and Push custom mysql image to ACR.
+
+	sudo docker tag <<imagename>> <<ACR login server>>/<<Image name>>
+	sudo docker push <<ACR login server>>/<<Image name>>
+
+	Create Azure Container Instances
+	Image source --> Azure Container Registry.
+	Port --> 3306
+
+	Copy public IP address of the ACI and replace it in the connection string of local
+	application and run the application.
+
+	Access DB and query from ACI console.
+
+LAB 06: Deploy Azure Container group
+
+	Go to local application and update connection string Server value with 'localhost'
+	* Azure container groups run's on the same host machine.
+	Publish the application on local folder.
+	Copy files to linux server and build image with Docker file.
+	Tag the image and push it to the repository.
+	Create YAML file to group container instances.
+	Open Azure Cloud shell and connect with resource group.
+	upload deployment.yaml file.
+	ls
+	az conatiner create --resource-group <<resource group name>> --file <<yaml file name>>
+
+Useful Commands:
+
+Command for container Logs:
+
+	sudo docker logs <<container name>>
+
+Linux Commands to edit file with Linux commands:
+ 	
+	mkdir <<Foldername>>		--> Create folder/directory
+	ls							--> List files and folders in a folder or directory.
+	cd <<Foldername>>			--> Enter into folder
+	vi <<file_name>>			--> Create file
+									Type 'i' to get into Insert command mode.
+									Write the content/Copy and paste the content/Modify the content in the file.
+									Press 'Esc' button to enter type mode.
+									Type ':x' to save and exit the file content.
+	cat <<file_name>>			--> View contents of the file
+	cd..						--> Come out of the folder
+
+Command to view processes:
+	
+	ps -ef
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 
