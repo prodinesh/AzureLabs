@@ -1,7 +1,5 @@
 USE experts;
 
-DROP table BOOKS
-
 CREATE TABLE BOOKS
 (
 Book_Id int,
