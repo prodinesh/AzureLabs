@@ -1,5 +1,6 @@
 ﻿using AzureSQL_ServiceApp.Interface;
 using AzureSQL_ServiceApp.Model;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.Data.SqlClient;
 using Microsoft.FeatureManagement;
 using System.Diagnostics.Eventing.Reader;
@@ -9,28 +10,30 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AzureSQL_ServiceApp.DAL
 {
-    public class BooksService : IBooksService
+    public class SQLDBService : IBooksService
     {
         
         private readonly IConfiguration _configuration;
         private readonly IFeatureManager _featureManager;
         private readonly string azureFunctionUrl = "http://localhost:7192/api/ReadBooks";
+        
+        public SQLDBService(IConfiguration configuration, IFeatureManager featureManager) 
+        { 
+            _configuration = configuration;
+            _featureManager = featureManager;
+        }
 
         private SqlConnection GetSQLDBConnection()
         {
             //Connection string from Local DB
             string strConnection = "Server=DINESH-O\\SQLEXPRESS;database=Experts;Trusted_Connection=True;TrustServerCertificate=True";
 
+            //string strConnection = "Server=tcp:booksdb.database.windows.net,1433;Initial Catalog=Expert;Persist Security Info=False;User ID=sqladmin;Password=Azure@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
             //Connection string from App Config service
             //SqlConnection conn = new SqlConnection(_configuration["SQLConnection"]);
 
             return new SqlConnection(strConnection);
-        }
-        
-        public BooksService(IConfiguration configuration, IFeatureManager featureManager) 
-        { 
-            _configuration = configuration;
-            _featureManager = featureManager;
         }
 
         public List<Books> GetBooks()

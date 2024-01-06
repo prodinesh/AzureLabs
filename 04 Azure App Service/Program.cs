@@ -1,5 +1,6 @@
 using AzureSQL_ServiceApp.DAL;
 using AzureSQL_ServiceApp.Interface;
+using BookStore_AzureAppService.DAL;
 using Microsoft.FeatureManagement;
 using static System.Net.WebRequestMethods;
 
@@ -18,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddFeatureManagement();
     
-builder.Services.AddTransient<IBooksService, BooksService>();
+builder.Services.AddTransient<IBooksService, MySQLDBService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
