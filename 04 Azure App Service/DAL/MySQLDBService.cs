@@ -49,7 +49,7 @@ namespace BookStore_AzureAppService.DAL
 
         private MySqlConnection GetMySqlConnection()
         {
-            var mySQLConnectionString = "Server=\"20.105.102.39\";UserID = \"root\";Password=\"Azure123\";Database=\"experts\";SslMode=Required;SslCa=\"{path_to_CA_cert}\";";
+            var mySQLConnectionString = "Server=\"localhost\";UserID = \"root\";Password=\"Azure123\";Database=\"experts\";SslMode=Required;SslCa=\"{path_to_CA_cert}\";";
             return new MySqlConnection(mySQLConnectionString);
         }
 
