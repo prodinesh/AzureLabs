@@ -32,7 +32,7 @@ Deploying .NET application on cluster:
 	Delete NGINX workload and service created in the previous lab.
 	Create web app yaml file and db yaml file.
 	Both the yaml files will contain service and deployment code.
-	Only web app service code will have type loadbalancer.
+	Only web app yaml service code will have type loadbalancer.
 	Go the local application and update the Server value of connection string with db service name mentioned in the db yaml.
 	Tag and push this web app image to Azure Container Registry.
 	
