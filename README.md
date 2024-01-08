@@ -10,6 +10,7 @@ Tech stack needed to work with these labs:
   <li>WinSCP</li>
   <li>VS Code</li>
   <li>MySQL Workbench</li>
+  <li>GitHub</li>
 </ol>
 
 Study area's:
