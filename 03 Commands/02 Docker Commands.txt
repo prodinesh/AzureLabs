@@ -1,0 +1,6 @@
+Docker Commands:
+----------------
+
+Command for container Logs:
+
+	sudo docker logs <<container name>>

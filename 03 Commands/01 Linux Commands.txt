@@ -1,0 +1,19 @@
+Linux Commands:
+---------------
+
+Linux Commands to edit file with Linux commands:
+ 	
+	mkdir <<Foldername>>		--> Create folder/directory
+	ls							--> List files and folders in a folder or directory.
+	cd <<Foldername>>			--> Enter into folder
+	vi <<file_name>>			--> Create file
+									Type 'i' to get into Insert command mode.
+									Write the content/Copy and paste the content/Modify the content in the file.
+									Press 'Esc' button to enter type mode.
+									Type ':x' to save and exit the file content.
+	cat <<file_name>>			--> View contents of the file
+	cd ..						--> Come out of the folder
+	
+Command to view processes:
+	
+	ps -ef

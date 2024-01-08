@@ -162,31 +162,7 @@ LAB 06: Deploy Azure Container group
 	
 		az conatiner create --resource-group <<resource group name>> --file <<yaml file name>>
 	
-	This will create Container Instance with the container group name mentioned in the yaml file, which can be verified by navigating to 'Container Instances'. 
-
-Useful Commands:
-
-Command for container Logs:
-
-	sudo docker logs <<container name>>
-
-Linux Commands to edit file with Linux commands:
- 	
-	mkdir <<Foldername>>		--> Create folder/directory
-	ls							--> List files and folders in a folder or directory.
-	cd <<Foldername>>			--> Enter into folder
-	vi <<file_name>>			--> Create file
-									Type 'i' to get into Insert command mode.
-									Write the content/Copy and paste the content/Modify the content in the file.
-									Press 'Esc' button to enter type mode.
-									Type ':x' to save and exit the file content.
-	cat <<file_name>>			--> View contents of the file
-	cd ..						--> Come out of the folder
-
-Command to view processes:
-	
-	ps -ef
-
+	This will create Container Instance with the container group name mentioned in the yaml file, which can be verified by navigating to 'Container Instances'.
 
 
 
