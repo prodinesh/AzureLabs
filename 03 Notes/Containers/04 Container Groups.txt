@@ -136,16 +136,33 @@ LAB 05: Deploy conatiner to ACR
 
 LAB 06: Deploy Azure Container group
 
-	Go to local application and update connection string Server value with 'localhost'
-	* Azure container groups run's on the same host machine.
-	Publish the application on local folder.
-	Copy files to linux server and build image with Docker file.
-	Tag the image and push it to the repository.
-	Create YAML file to group container instances.
-	Open Azure Cloud shell and connect with resource group.
-	upload deployment.yaml file.
-	ls
-	az conatiner create --resource-group <<resource group name>> --file <<yaml file name>>
+	Go to local application (web app) and update connection string server value with 'localhost'.
+	* Azure containers group (web app + DB) run on the same host machine (VM) in this case.
+	Publish the web application to local folder.
+	Copy files along with publish folder to linux server with the help of WinSCP and build docker image with Dockerfile.
+	After creating the image successfully, tag the image using command
+
+		sudo docker tag <<imagename>> <<ACR login server>>/<<Image name>>
+		
+	As a next step, push the image to the Container Repository using command
+	
+		sudo docker push <<ACR login server>>/<<Image name>>
+	
+	While pushing image to the conatiner repository it may give an authentication error.
+	To overcome the authentication error, you have to log-in to Azure Container Repository using command
+		
+		sudo docker login <<ACR login server>>
+	
+	Create YAML file to group container instances. (Refer resources folder for yaml file and make the required changes)
+
+	Open Azure Cloud shell. 
+	Open advanced settings for current subscription and use existing resource group, new storage account and file share values before clicking on 'Create storage'.
+	Upload yaml file.
+	Type the below azure command to run the yaml file.
+	
+		az conatiner create --resource-group <<resource group name>> --file <<yaml file name>>
+	
+	This will create Container Instance with the container group name mentioned in the yaml file, which can be verified by navigating to 'Container Instances'. 
 
 Useful Commands:
 
@@ -164,7 +181,7 @@ Linux Commands to edit file with Linux commands:
 									Press 'Esc' button to enter type mode.
 									Type ':x' to save and exit the file content.
 	cat <<file_name>>			--> View contents of the file
-	cd..						--> Come out of the folder
+	cd ..						--> Come out of the folder
 
 Command to view processes:
 	
