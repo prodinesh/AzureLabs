@@ -1,0 +1,3 @@
+Container assignments:
+
+	01	Use connection string as envrionment variable and call it in web app container for accessing data in DB container. 
