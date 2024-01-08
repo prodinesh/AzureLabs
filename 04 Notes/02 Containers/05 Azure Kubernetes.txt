@@ -1,0 +1,42 @@
+Azure Kubernetes:
+
+	-	Kubernetes is used to manage containers at scale.
+	-	Azure Kubernetes is a managed service for Kubernetes on Azure.
+
+LAB 01:
+
+Deploying an Azure Kubernetes Cluster:
+
+	Search and select 'Kubernetes Service' in the Azure portal.
+	Add resource group, cluster name.
+	Integrate with existing Azure Container Registry in the integrations tab.
+	Click on create button.
+	
+LAB 02:
+
+Deploying a container(NGINX in our case) within the cluster:
+
+	Create deployment yaml file.
+	Go to Kubernetes resources --> Workloads --> Create button (Create with YAML)
+	Paste the deployment.yaml code and click add.
+	You can see the deployment name in the workload's.
+	Create service yaml file.
+	Go to Kubernetes resources --> Services and ingresses --> Create button (Create with YAML)
+	Paste the service yaml code and click add.
+	You can see the 'Services' name in the Services tab.
+	
+LAB 03:
+
+Deploying .NET application on cluster:
+
+	Delete NGINX workload and service created in the previous lab.
+	Create web app yaml file and db yaml file.
+	Both the yaml files will contain service and deployment code.
+	Only web app service code will have type loadbalancer.
+	Go the local application and update the Server value of connection string with db service name mentioned in the db yaml.
+	Tag and push this web app image to Azure Container Registry.
+	
+	Go to Kubernetes Cluster on to the Azure Portal.
+	Add web app deployment yaml code to the workload and service yaml code to the services and ingresses.
+	Add MySQL Db deployment yaml to the workload and sevrice yaml code to the services and ingresses.
+	Use the load balancer ip address in the web app service to access the application.
