@@ -20,11 +20,12 @@ File shares:
 
 	Persist data via the use of Azure File shares.
 
-Lab:
+Lab 01:
 
 	1.	Create Container Instances resource.
 		Pick up image from ACR.
 	2.	Network tab --> Add public IP address and 80 port.
 	3.	Go to resources and use ip address for access your application.
 	4.	Go to containers to verify the status of images.
+	5.	Check the events and logs.
 

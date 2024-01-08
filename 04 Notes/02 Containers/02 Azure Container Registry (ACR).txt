@@ -1,8 +1,12 @@
+LAB 01:
+
 Creating Azure Container Registry:
 
 	1.	Go to Azure Portal.
 	2.	Create Container Registry in azure portal.
 	3.	Once resource is created, go to Access Keys and enable 'Admin user'.
+
+LAB 02:
 
 Pushing an image to the Azure Container Registry (ACR):
 
