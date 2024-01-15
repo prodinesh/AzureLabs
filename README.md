@@ -11,6 +11,7 @@ Tech stack needed to work with these labs:
   <li>VS Code</li>
   <li>MySQL Workbench</li>
   <li>GitHub</li>
+  <li>Linux</li>
 </ol>
 
 Study area's:
