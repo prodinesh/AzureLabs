@@ -9,21 +9,32 @@ Deploying Container based solutions:
 	- Host solution using the Azure Container Instance Service
 	- Working with Azure Kubernetes
 	
+	
 Containers:
 
-Isolation:
+	Containers are a technology for packaging and running Windows and Linux applications
+	across diverse environments on-premises and in the cloud.
+	
+Features:
+	
+	1.	Isolated environment for easy develop, deploy and manage.
+	2.	They start and stop quickly.
+	3.	Lightweight make them a useful tool for increasing the density and utilization of
+		your infrastructure.
 
-Without containers, it is difficult to isolate application running on the same VM.
-Updates to one application may impact other applications running on the same machine.
-  
-Using conatiners we can package an application along with libraries,
-frameworks and depedencies in a self contained unit and make it run.
-It wont impact other applications running in the other contained  unit.
+	Isolation:
 
-Portability:
+		Without containers, it is difficult to isolate application running on the same VM.
+		Updates to one application may impact other applications running on the same machine.
+		  
+		Using conatiners we can package an application along with libraries,
+		frameworks and depedencies in a self contained unit and make it run.
+		It wont impact other applications running in the other contained  unit.
 
-Contained unit of application can be easily run on another virtual machine 
-as long as the conatiner is running the runtime for the container based application.
+	Portability:
+
+		Contained unit of application can be easily run on another virtual machine 
+		as long as the conatiner is running the runtime for the container based application.
 
 Docker file --> Build --> Docker Image  --> Run --> Docker container
 
